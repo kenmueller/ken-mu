@@ -1,0 +1,37 @@
+body > .container {
+	display: grid;
+	justify-content: center;
+	align-content: center;
+}
+
+body > .container > .box {
+	padding: 20px 60px;
+	border-radius: 8px;
+}
+
+body > .container > .box,
+body > .container > .box > button {
+	border: 1px solid #eee;
+	box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+body > .container > .box > h1 {
+	font-size: 80px;
+	text-align: center;
+}
+
+body > .container > .box > button {
+	width: 200px;
+	height: 200px;
+	margin: 20px 0;
+	font-size: 20px;
+	font-weight: bold;
+	color: white;
+	background: #4355f9;
+	border-radius: 50%;
+	transition: background 0.3s ease-in-out, transform 0.4s ease-in-out;
+}
+
+body > .container > .box > button:hover {
+	background: #051e34;
+}
