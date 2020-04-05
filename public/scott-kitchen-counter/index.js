@@ -14,7 +14,7 @@ let currentRotation = 0
 
 doc.onSnapshot(
 	snapshot => {
-		lastDay = snapshot.get('lastDay')?.toDate()
+		lastDay = snapshot.get('lastDay').toDate()
 		logs = snapshot.get('logs')
 		
 		updateCount()
