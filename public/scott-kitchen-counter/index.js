@@ -40,7 +40,9 @@ const updateChart = () =>
 			labels: [...Array(logs.length).keys()],
 			series: [{ data: logs }]
 		},
-		{ showLabel: false }
+		{
+			axisX: { showLabel: false }
+		}
 	)
 
 const incrementCount = () => {
