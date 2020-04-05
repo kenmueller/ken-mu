@@ -7,7 +7,6 @@ const incrementButton = document.querySelector('body > .container > .inner-conta
 
 const chartSelector = 'body > .container > .inner-container > .chart'
 
-let count = 0
 let lastDay = null
 let logs = []
 
@@ -15,7 +14,6 @@ let currentRotation = 0
 
 doc.onSnapshot(
 	snapshot => {
-		count = snapshot.get('value')
 		lastDay = snapshot.get('lastDay')?.toDate()
 		logs = snapshot.get('logs')
 		
@@ -29,7 +27,7 @@ doc.onSnapshot(
 )
 
 const updateCount = () => {
-	countLabel.innerHTML = count
+	countLabel.innerHTML = logs.length ? logs[logs.length - 1] : 0
 	incrementButton.style.transform = `rotate(${currentRotation += 360}deg)`
 }
 
