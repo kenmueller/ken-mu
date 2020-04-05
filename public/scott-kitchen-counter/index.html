@@ -8,6 +8,7 @@
 			rel="stylesheet"
 			href="https://fonts.googleapis.com/css2?family=Muli:wght@200;300;400;500;600;700;800;900&display=swap"
 		>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.4/chartist.min.css">
 		<link rel="stylesheet" href="/shared/css/index.css">
 		<link rel="stylesheet" href="/scott-kitchen-counter/index.css">
 		<title>Ken Mueller - Scott Kitchen Counter</title>
@@ -21,16 +22,21 @@
 			</div>
 		</div>
 		<div class="container">
-			<div class="box">
-				<h1>...</h1>
-				<button onclick="incrementCount()">
-					He went again!
-				</button>
+			<div class="inner-container">
+				<div class="box">
+					<p>Today</p>
+					<h1>...</h1>
+					<button onclick="incrementCount()">
+						He went again!
+					</button>
+				</div>
+				<div class="chart"></div>
 			</div>
 		</div>
 		<script src="/__/firebase/7.13.2/firebase-app.js"></script>
 		<script src="/__/firebase/7.13.2/firebase-firestore.js"></script>
 		<script src="/__/firebase/init.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.4/chartist.min.js"></script>
 		<script src="/scott-kitchen-counter/index.js"></script>
 	</body>
 </html>

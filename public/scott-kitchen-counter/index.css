@@ -4,23 +4,37 @@ body > .container {
 	align-content: center;
 }
 
-body > .container > .box {
+body > .container > .inner-container {
+	display: flex;
+	align-items: center;
+}
+
+body > .container > .inner-container > .box {
 	padding: 20px 60px;
 	border-radius: 8px;
 }
 
-body > .container > .box,
-body > .container > .box > button {
+body > .container > .inner-container > .box,
+body > .container > .inner-container > .box > button {
 	border: 1px solid #eee;
 	box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
 }
 
-body > .container > .box > h1 {
-	font-size: 80px;
+body > .container > .inner-container > .box > h1,
+body > .container > .inner-container > .box > p {
 	text-align: center;
 }
 
-body > .container > .box > button {
+body > .container > .inner-container > .box > h1 {
+	font-size: 80px;
+}
+
+body > .container > .inner-container > .box > p {
+	font-weight: bold;
+	color: #979797;
+}
+
+body > .container > .inner-container > .box > button {
 	width: 200px;
 	height: 200px;
 	margin: 20px 0;
@@ -32,6 +46,10 @@ body > .container > .box > button {
 	transition: background 0.3s ease-in-out, transform 0.4s ease-in-out;
 }
 
-body > .container > .box > button:hover {
+body > .container > .inner-container > .box > button:hover {
 	background: #051e34;
+}
+
+body > .container > .inner-container > .chart {
+	margin-left: 20px;
 }
