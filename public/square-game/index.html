@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Muli:wght@200;300;400;500;600;700;800;900&display=swap"
+		>
+		<link rel="stylesheet" href="/square-game/index.css">
+		<title>Ken Mueller - Square Game</title>
+	</head>
+	<body>
+		<canvas></canvas>
+		<form class="inputs" onsubmit="event.preventDefault()">
+			<label for="player-width">Player width</label>
+			<input id="player-width" oninput="game.player.width = parseFloat(this.value)" value="30">
+			
+			<label for="player-height">Player height</label>
+			<input id="player-height" oninput="game.player.height = parseFloat(this.value)" value="30">
+			
+			<label for="player-speed">Player speed</label>
+			<input id="player-speed" oninput="game.player.speed = parseFloat(this.value)" value="1">
+			
+			<label for="player-color">Player color</label>
+			<input id="player-color" oninput="game.player.color = this.value" value="red">
+			
+			<label for="obstacle-width">Obstacle width</label>
+			<input id="obstacle-width" oninput="game.obstacleWidth = parseFloat(this.value)" value="5">
+			
+			<label for="obstacle-spacing">Obstacle spacing</label>
+			<input id="obstacle-spacing" oninput="game.obstacleSpacing = parseFloat(this.value)" value="120">
+			
+			<label for="obstacle-speed">Obstacle speed</label>
+			<input id="obstacle-speed" oninput="game.obstacleSpeed = parseFloat(this.value)" value="1">
+			
+			<label for="obstacle-color">Obstacle color</label>
+			<input id="obstacle-color" oninput="game.obstacleColor = this.value" value="green">
+			
+			<label for="lower-gap-multiplier">Lower gap multiplier</label>
+			<input id="lower-gap-multiplier" oninput="game.lowerGapMultiplier = parseFloat(this.value)" value="1.5">
+			
+			<label for="upper-gap-multiplier">Upper gap multiplier</label>
+			<input id="upper-gap-multiplier" oninput="game.upperGapMultiplier = parseFloat(this.value)" value="2">
+			
+			<label for="speed-multiplier">Speed multiplier</label>
+			<input id="speed-multiplier" oninput="game.setSpeedMultiplier(parseFloat(this.value))" value="1">
+			
+			<label for="mirrored">Mirrored</label>
+			<input id="mirrored" type="checkbox" oninput="canvas.style.transform = `scaleX(${this.checked ? -1 : 1})`">
+		</form>
+		<script src="/square-game/game.js"></script>
+		<script src="/square-game/index.js"></script>
+	</body>
+</html>

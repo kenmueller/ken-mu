@@ -1,0 +1,38 @@
+body {
+	box-sizing: border-box;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+	font-family: Muli, Arial, Helvetica, sans-serif;
+	text-rendering: optimizeLegibility;
+}
+
+canvas,
+.inputs {
+	flex-shrink: 0;
+}
+
+canvas {
+	border: 1px solid #454545;
+	width: calc(100vw - 20px * 3 - 150px);
+}
+
+.inputs {
+	width: 150px;
+	margin-left: 20px;
+}
+
+.inputs > * {
+	display: block;
+}
+
+.inputs > input {
+	width: 100%;
+	margin-top: 2px;
+}
+
+.inputs > label:not(:first-child) {
+	margin-top: 20px;
+}

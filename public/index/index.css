@@ -2,17 +2,18 @@ body > .container > h2 {
 	margin: 12px 0;
 }
 
+body > .container > .links > li:not(:last-child) {
+	margin-bottom: 12px;
+}
+
 body > .container > .links > li > a {
+	display: inline-block;
 	padding: 8px 20px;
 	font-weight: bold;
 	color: white;
 	background: #00d388;
 	border-radius: 8px;
 	transition: opacity 0.3s;
-}
-
-body > .container > .links > li > a:not(:last-child) {
-	margin-right: 12px;
 }
 
 body > .container > .links > li > a:hover,
