@@ -4,6 +4,9 @@ class Game {
 		this.context = context
 	}
 	
+	static clamp = (min, target, max) =>
+		Math.min(Math.max(min, target), max)
+	
 	release = () => {
 		const { removeUpdateInterval, player } = this
 		
@@ -20,6 +23,7 @@ class Game {
 		this.clear()
 		
 		const {
+			canvas: { width, height },
 			context,
 			player,
 			obstacles,
@@ -29,7 +33,10 @@ class Game {
 			createObstacle
 		} = this
 		
-		player.update(context)
+		player.update(context, (x, y) => ({
+			x: Game.clamp(0, x, width - player.width),
+			y: Game.clamp(0, y, height - player.height)
+		}))
 		
 		for (const obstacle of obstacles) {
 			if (player.isIntersectingWith(obstacle)) {
@@ -76,6 +83,22 @@ class Game {
 		
 		this.player.speed = speed
 		this.player.addMovementListeners()
+		
+		this.player.onKeyDown = keyCode => {
+			switch (keyCode) {
+				case 16: // Shift
+					this.player.speedMultiplier = this.dashMultiplier // 3x speed dash
+					
+					setTimeout(() => (
+						this.player.speedMultiplier = undefined
+					), this.dashDuration * 1000) // 0.2 second dash
+					
+					break
+				case 32: // Space
+					this.player.y = Math.random() * (this.canvas.height - this.player.height)
+					break
+			}
+		}
 	}
 	
 	shouldCreateObstacle = () =>
@@ -132,8 +155,8 @@ class Rectangle {
 		this.keyCodes = {}
 	}
 	
-	update = context => {
-		const { x, y, width, height, color, speed } = this
+	update = (context, positionTransform = (x, y) => ({ x, y })) => {
+		const { width, height, color, speed, speedMultiplier } = this
 		
 		let xSpeed = 0
 		let ySpeed = 0
@@ -143,16 +166,29 @@ class Rectangle {
 		if (83 in this.keyCodes) ySpeed += speed // Down
 		if (65 in this.keyCodes) xSpeed -= speed // Left
 		
-		this.x += xSpeed
-		this.y += ySpeed
+		const xSpeedWithMultiplier = xSpeed || ySpeed
+			? xSpeed * (speedMultiplier || 1)
+			: (speedMultiplier || 0)
+		
+		const { x, y } = positionTransform(
+			this.x + xSpeedWithMultiplier,
+			this.y + ySpeed * (speedMultiplier || 1)
+		)
+		
+		this.x = x
+		this.y = y
 		
 		context.fillStyle = color
-		context.fillRect(x, y, width, height)
+		context.fillRect(this.x, this.y, width, height)
 	}
 	
 	addMovementListeners = () => {
-		const onKeyDown = ({ keyCode }) =>
+		const onKeyDown = ({ keyCode }) => {
 			this.keyCodes[keyCode] = null
+			
+			if (this.onKeyDown)
+				this.onKeyDown(keyCode)
+		}
 		
 		const onKeyUp = ({ keyCode }) =>
 			delete this.keyCodes[keyCode]

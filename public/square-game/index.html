@@ -12,7 +12,10 @@
 		<title>Ken Mueller - Square Game</title>
 	</head>
 	<body>
-		<canvas></canvas>
+		<div class="left">
+			<p><b>Shift</b> to dash. <b>Space</b> to teleport randomly.</p>
+			<canvas></canvas>
+		</div>
 		<form class="inputs" onsubmit="event.preventDefault()">
 			<label for="player-width">Player width</label>
 			<input id="player-width" oninput="game.player.width = parseFloat(this.value)" value="30">
@@ -25,6 +28,12 @@
 			
 			<label for="player-color">Player color</label>
 			<input id="player-color" oninput="game.player.color = this.value" value="red">
+			
+			<label for="dash-multiplier">Dash speed multiplier</label>
+			<input id="dash-multiplier" oninput="game.dashMultiplier = parseFloat(this.value)" value="5">
+			
+			<label for="dash-duration">Dash duration (seconds)</label>
+			<input id="dash-duration" oninput="game.dashDuration = parseFloat(this.value)" value="0.2">
 			
 			<label for="obstacle-width">Obstacle width</label>
 			<input id="obstacle-width" oninput="game.obstacleWidth = parseFloat(this.value)" value="5">
@@ -47,8 +56,10 @@
 			<label for="speed-multiplier">Speed multiplier</label>
 			<input id="speed-multiplier" oninput="game.setSpeedMultiplier(parseFloat(this.value))" value="1">
 			
-			<label for="mirrored">Mirrored</label>
-			<input id="mirrored" type="checkbox" oninput="canvas.style.transform = `scaleX(${this.checked ? -1 : 1})`">
+			<div class="options">
+				<input id="mirrored" type="checkbox" oninput="canvas.style.transform = `scaleX(${this.checked ? -1 : 1})`">
+				<label for="mirrored">Mirrored</label>
+			</div>
 		</form>
 		<script src="/square-game/game.js"></script>
 		<script src="/square-game/index.js"></script>

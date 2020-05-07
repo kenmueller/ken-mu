@@ -1,6 +1,14 @@
 const canvas = document.querySelector('canvas')
 const context = canvas.getContext('2d')
 
+window.addEventListener('keydown', ({ keyCode }) =>
+	keyCode === 13 // Enter
+		? document
+			.querySelectorAll('.inputs > input')
+			.forEach(input => input.blur())
+		: null
+)
+
 const str = id =>
 	document.getElementById(id).value
 
@@ -16,6 +24,9 @@ const createGame = () => {
 		speed: num('player-speed'),
 		color: str('player-color')
 	})
+	
+	game.dashMultiplier = num('dash-multiplier')
+	game.dashDuration = num('dash-duration')
 	
 	game.obstacleWidth = num('obstacle-width')
 	game.obstacleSpacing = num('obstacle-spacing')
